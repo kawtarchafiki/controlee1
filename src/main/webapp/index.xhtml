@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Liste des employés</title>
+    <!-- Lien vers Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</h:head>
+
+<h:body>
+    <h2>Liste des employés</h2>
+    <h:form>
+        <h:dataTable value="#{employeBean.obtenirEmployes()}" var="employe"
+                     border="1" class="table">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{employe.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nom</f:facet>
+                <h:outputText value="#{employe.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                <h:outputText value="#{employe.email}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Skill</f:facet>
+                <h:outputText value="#{employe.skill}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Projet</f:facet>
+                <h:outputText value="#{employe.projet.nom}"/>
+            </h:column>
+            <h:column>
+                <!-- Bouton Supprimer avec style danger de Bootstrap -->
+                <h:commandButton styleClass="btn btn-danger"
+                                 action="#{employeBean.supprimerEmploye(employe.id)}"
+                                 value="Supprimer">
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+
+<!-- Scripts de Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+</html>
